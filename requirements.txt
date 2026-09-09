@@ -1,20 +1,18 @@
-# Draft — to be pinned after a clean-environment smoke test.
-torch
-transformers
-vllm
-qwen-vl-utils
-accelerate
-pillow
-numpy
-pandas
-pyarrow
-tqdm
-openai            # DeepSeek API (OpenAI-compatible) for attribute extraction
-nltk              # sentence splitting in analysis/attribute_extraction/math
-spacy             # aggregate_waterbirds_unique.py (en_core_web_sm)
-matplotlib        # draw_shapes.py (solid geometry rendering)
-openpyxl
-xlsxwriter
-jsonlines
-# Object-area analysis (analysis/object_area): LangSAM
-# pip install git+https://github.com/luca-medeiros/lang-segment-anything.git
+# Versions used for the paper experiments (Python 3.11, CUDA 12.8).
+torch==2.10.0
+transformers==5.6.0
+accelerate==1.13.0
+vllm==0.19.1                 # inference/run_math_vllm.py, inference/judge_math.py
+qwen-vl-utils==0.0.14
+huggingface_hub
+pillow==11.3.0
+numpy==2.2.6
+pandas==2.3.3
+pyarrow==23.0.1              # parquet I/O (analysis/attention_blocking)
+openpyxl==3.1.5              # Excel output (inference/score_*.py)
+matplotlib==3.10.7           # idis_math/build/draw_shapes.py, analysis/object_area
+tqdm==4.67.1
+openai==2.32.0               # DeepSeek API client (analysis/attribute_extraction)
+
+# Object-area analysis only (analysis/object_area/langsam_area.py):
+# pip install git+https://github.com/luca-medeiros/lang-segment-anything.git   # lang-sam 0.2.1

@@ -29,6 +29,8 @@ If you find our work or dataset useful, please consider giving a star ⭐ and ci
 
 ## Installation
 
+We develop this codebase on Python 3.11, PyTorch 2.10 and vLLM 0.19 with CUDA 12.8.
+
 ```bash
 conda create -n idis python=3.11 -y
 conda activate idis
