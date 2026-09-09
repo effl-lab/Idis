@@ -4,7 +4,7 @@
 
 The 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP 2026)
 
-Jiyun Bae, Hyunjong Ok, Sangwoo Mo, Jaeho Lee
+Jiyun Bae, Hyunjong Ok, [Sangwoo Mo](https://sites.google.com/view/sangwoomo/publications?authuser=0), [Jaeho Lee](https://jaeho-lee.github.io/)
 
 [[Paper](https://arxiv.org/abs/2511.21397)] | [[Dataset](#data-preparation)]
 
