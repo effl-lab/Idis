@@ -1,0 +1,31 @@
+# staging / planning docs (not part of the public release)
+RELEASE_PLAN.md
+STAGING_NOTES.md
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+.env
+
+# experiment outputs
+results/
+out/
+logs/
+log/
+*.jsonl
+!data/**/*.jsonl
+*.parquet
+*.xlsx
+*.png
+*.pdf
+
+# cluster launch scripts (internal; not part of the public release)
+scripts/
+
+# README figures
+!images/
+!images/*.png
+
+# handoff notes (internal)
+HANDOFF_*.md

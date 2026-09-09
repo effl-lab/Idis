@@ -1,0 +1,20 @@
+# Draft — to be pinned after a clean-environment smoke test.
+torch
+transformers
+vllm
+qwen-vl-utils
+accelerate
+pillow
+numpy
+pandas
+pyarrow
+tqdm
+openai            # DeepSeek API (OpenAI-compatible) for attribute extraction
+nltk              # sentence splitting in analysis/attribute_extraction/math
+spacy             # aggregate_waterbirds_unique.py (en_core_web_sm)
+matplotlib        # draw_shapes.py (solid geometry rendering)
+openpyxl
+xlsxwriter
+jsonlines
+# Object-area analysis (analysis/object_area): LangSAM
+# pip install git+https://github.com/luca-medeiros/lang-segment-anything.git
