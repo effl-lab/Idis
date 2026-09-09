@@ -39,6 +39,8 @@ pip install -r requirements.txt
 
 The DeepSeek-based attribute extractors (`analysis/attribute_extraction/`) need `DEEPSEEK_API_KEY`.
 The object-area analysis needs [LangSAM](https://github.com/luca-medeiros/lang-segment-anything).
+Rebuilding Idis-perception needs Gemini access, either Vertex AI (`GOOGLE_CLOUD_PROJECT` and
+`GOOGLE_APPLICATION_CREDENTIALS`) or the Gemini Developer API (`GOOGLE_API_KEY`).
 
 ## Data Preparation
 
@@ -49,13 +51,39 @@ The object-area analysis needs [LangSAM](https://github.com/luca-medeiros/lang-s
 Built on the *original* split of [ImageNet-9](https://github.com/MadryLab/backgrounds_challenge) (4,050 images, 9 classes).
 Distractors are inserted with Gemini 2.5 Flash Image and validated by human annotators;
 typographic distractors render non-target class names into the image.
-Download link: coming soon.
+
+Either download the pre-built images (link: coming soon) or rebuild them. `original/` is a copy of the
+ImageNet-9 class directories; the distractor cells are generated per class, count and semantic relationship:
+
+```bash
+export GOOGLE_CLOUD_PROJECT=<gcp-project>   # Vertex AI (with GOOGLE_APPLICATION_CREDENTIALS); or GOOGLE_API_KEY
+export IMAGENET9=/path/to/backgrounds_challenge/original/val   # holds 00_dog ... 08_fish
+export IDIS_PERCEPTION=/path/to/idis_perception
+
+# 48,600 images = 9 classes x n=1..4 x {aligned, conflicting, irrelevant} x 450
+for class_dir in "$IMAGENET9"/*/; do
+    for n in 1 2 3 4; do
+        for semantic in aligned conflicting irrelevant; do
+            python idis_perception/build/gemini_edit.py --image-dir "$class_dir" \
+                --out-root "$IDIS_PERCEPTION" --semantic "$semantic" --n "$n" --skip-existing
+        done
+    done
+done
+
+# human validation (App. A.3): replay the images an annotator rejected against the same cell
+python idis_perception/build/gemini_edit.py --image-dir "$IMAGENET9/00_dog" --out-root "$IDIS_PERCEPTION" \
+    --semantic aligned --n 4 --retry-from "$IDIS_PERCEPTION/failed-dog-4-aligned.jsonl"
+
+# question files for inference/run_perception.py
+python idis_perception/build/build_question_files.py --image-root "$IDIS_PERCEPTION" --include-original
+```
 
 <pre>
 idis_perception/
 ├── original/&lt;class&gt;/&lt;stem&gt;.JPEG                        # no-distractor baseline
 ├── &lt;class&gt;/&lt;n&gt;/{aligned,conflicting,irrelevant}/&lt;stem&gt;.png   # n = 1..4 visual distractors
 └── meta/&lt;class&gt;-&lt;n&gt;-&lt;semantic&gt;.jsonl                    # question files for run_perception.py
+    meta/&lt;class&gt;-original.jsonl                          # baseline question files (--include-original)
 </pre>
 
 ### Idis-math

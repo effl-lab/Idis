@@ -13,6 +13,8 @@ openpyxl==3.1.5              # Excel output (inference/score_*.py)
 matplotlib==3.10.7           # idis_math/build/draw_shapes.py, analysis/object_area
 tqdm==4.67.1
 openai==2.32.0               # DeepSeek API client (analysis/attribute_extraction)
+google-genai==1.42.0         # Gemini 2.5 Flash Image (idis_perception/build/gemini_edit.py)
+jsonlines==4.0.0             # failure logs (idis_perception/build)
 
 # Object-area analysis only (analysis/object_area/langsam_area.py):
 # pip install git+https://github.com/luca-medeiros/lang-segment-anything.git   # lang-sam 0.2.1
