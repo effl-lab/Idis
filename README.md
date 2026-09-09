@@ -8,7 +8,9 @@ Jiyun Bae, Hyunjong Ok, [Sangwoo Mo](https://sites.google.com/view/sangwoomo/pub
 
 [[Paper](https://arxiv.org/abs/2511.21397)] | [[Dataset](#data-preparation)]
 
-![Test-time scaling under distractors](images/figure1.png)
+<p align="center">
+  <img src="images/figure1.png" alt="Test-time scaling under distractors" width="450">
+</p>
 
 **TL;DR**: Textual distractors are known to intensify inverse scaling in reasoning LMs: models reason longer and get worse. We introduce **Idis** (Images with distractors), a VQA benchmark suite that varies distractor *modality*, *number*, and *semantic relationship* (aligned / conflicting / irrelevant) over perception-centric (ImageNet-9) and reasoning-centric (MathVerse) tasks. Visual distractors behave differently from textual ones: they lower accuracy **without** lengthening the reasoning trace, shifting the whole length–accuracy curve downward, while textual distractors in the prompt reproduce the LM-style inverse scaling. The fraction of distractor-related attributes verbalized in the trace, not its length, predicts the failure, and a simple attribute-guiding prompt reduces it.
 
