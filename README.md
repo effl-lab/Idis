@@ -49,8 +49,8 @@ Rebuilding Idis-perception needs Gemini access, either Vertex AI (`GOOGLE_CLOUD_
 ### Idis-perception
 
 Built on the *original* split of [ImageNet-9](https://github.com/MadryLab/backgrounds_challenge) (4,050 images, 9 classes).
-Distractors are inserted with Gemini 2.5 Flash Image and validated by human annotators;
-typographic distractors render non-target class names into the image.
+Visual distractors are inserted with Gemini 2.5 Flash Image and validated by human annotators;
+typographic distractors render non-target class names into the image (`typographic_overlay.py`).
 
 Either download the pre-built images (link: coming soon) or rebuild them. `original/` is a copy of the
 ImageNet-9 class directories; the distractor cells are generated per class, count and semantic relationship:
@@ -76,14 +76,19 @@ python idis_perception/build/gemini_edit.py --image-dir "$IMAGENET9/00_dog" --ou
 
 # question files for inference/run_perception.py
 python idis_perception/build/build_question_files.py --image-root "$IDIS_PERCEPTION" --include-original
+
+# typographic distractors (App. A.1): each non-target class name rendered into every original image
+python idis_perception/build/typographic_overlay.py --image-root "$IDIS_PERCEPTION"   # 32,400 images + meta/<class>-typographic.jsonl
 ```
 
 <pre>
 idis_perception/
 ├── original/&lt;class&gt;/&lt;stem&gt;.JPEG                        # no-distractor baseline
 ├── &lt;class&gt;/&lt;n&gt;/{aligned,conflicting,irrelevant}/&lt;stem&gt;.png   # n = 1..4 visual distractors
+├── typographic/&lt;class&gt;/&lt;overlay&gt;/&lt;stem&gt;.png            # typographic distractors (8 per image)
 └── meta/&lt;class&gt;-&lt;n&gt;-&lt;semantic&gt;.jsonl                    # question files for run_perception.py
     meta/&lt;class&gt;-original.jsonl                          # baseline question files (--include-original)
+    meta/&lt;class&gt;-typographic.jsonl                       # typographic question files
 </pre>
 
 ### Idis-math
