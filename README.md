@@ -6,7 +6,7 @@ The 2026 Conference on Empirical Methods in Natural Language Processing (EMNLP 2
 
 Jiyun Bae, Hyunjong Ok, [Sangwoo Mo](https://sites.google.com/view/sangwoomo/publications?authuser=0), [Jaeho Lee](https://jaeho-lee.github.io/)
 
-[[Paper](https://arxiv.org/abs/2511.21397)] | [[Dataset](#data-preparation)]
+[[Paper](https://arxiv.org/abs/2511.21397)] | [[Dataset](#data-preparation)] | [[Project Page](https://idis-rvlms.github.io/)]
 
 <p align="center">
   <img src="images/figure1.png" alt="Test-time scaling under distractors" width="450">
