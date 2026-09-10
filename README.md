@@ -103,7 +103,7 @@ Either download the pre-built images (link: coming soon) or rebuild them:
 export MATHVERSE_ROOT=/path/to/MathVerse LOGICVISTA_ROOT=/path/to/LogicVista_export
 python idis_math/build/gen_visual_distractors.py --mode both      # aligned + conflicting
 python idis_math/build/gen_irrelevant_distractors.py               # irrelevant (LogicVista tables)
-python idis_math/build/gen_textual_distractors.py --num-distractors 4   # textual (Sonnet 4.5 via `claude` CLI)
+python idis_math/build/gen_textual_distractors.py --num-distractors 4   # textual (Sonnet 4.5)
 ```
 
 <pre>
