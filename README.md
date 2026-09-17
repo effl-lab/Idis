@@ -46,13 +46,22 @@ Rebuilding Idis-perception needs Gemini access, either Vertex AI (`GOOGLE_CLOUD_
 
 ![Idis construction](images/figure2.png)
 
+The pre-built benchmark (109k images, 70 GB) is hosted at
+[huggingface.co/datasets/Vail-2000/Idis](https://huggingface.co/datasets/Vail-2000/Idis):
+
+```python
+from huggingface_hub import snapshot_download
+snapshot_download("Vail-2000/Idis", repo_type="dataset", local_dir="/path/to/Idis")
+```
+
 ### Idis-perception
 
 Built on the *original* split of [ImageNet-9](https://github.com/MadryLab/backgrounds_challenge) (4,050 images, 9 classes).
 Visual distractors are inserted with Gemini 2.5 Flash Image and validated by human annotators;
 typographic distractors render non-target class names into the image (`typographic_overlay.py`).
 
-Either download the pre-built images (link: coming soon) or rebuild them. `original/` is a copy of the
+Either download the pre-built images from the [Hugging Face Hub](https://huggingface.co/datasets/Vail-2000/Idis)
+(`Idis-perception/visual_distractor/` is the `$IDIS_PERCEPTION` tree below) or rebuild them. `original/` is a copy of the
 ImageNet-9 class directories; the distractor cells are generated per class, count and semantic relationship:
 
 ```bash
@@ -97,7 +106,9 @@ Built on the *testmini* split of [MathVerse](https://huggingface.co/datasets/AI4
 Set `MATHVERSE_ROOT` to a directory holding `testmini.json` and `testmini/images/`.
 Irrelevant distractors are drawn from the table subset of [LogicVista](https://github.com/Yijia-Xiao/LogicVista) (`LOGICVISTA_ROOT`).
 
-Either download the pre-built images (link: coming soon) or rebuild them:
+Either download the pre-built images from the [Hugging Face Hub](https://huggingface.co/datasets/Vail-2000/Idis)
+(`Idis-math/visual_distractor/` and `Idis-math/textual_distractor/` map to `mathverse_aug/library/` and
+`mathverse_aug/text_distractor/` below) or rebuild them:
 
 ```bash
 export MATHVERSE_ROOT=/path/to/MathVerse LOGICVISTA_ROOT=/path/to/LogicVista_export
