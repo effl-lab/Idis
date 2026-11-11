@@ -157,12 +157,12 @@ def extract_from_box(answer_text: str):
     return (norm if norm else "null"), content, "last_box", None
 
 def parse_case_n_from_filename(path: str):
-    """Parse n_objects and case from a filename such as ...-3-aligned.jsonl."""
+    """Parse n_objects and case, including terminal inference sample suffixes (_s0, _s1, ...)."""
     stem = Path(path).stem.lower()
     parts = stem.split("-")
     n_obj, case = None, None
     if len(parts) >= 2:
-        last = parts[-1]
+        last = re.sub(r"_s[0-9]+$", "", parts[-1])
         prev = parts[-2]
         if last in ("aligned","conflicting","irrelevant"):
             case = last.capitalize()
